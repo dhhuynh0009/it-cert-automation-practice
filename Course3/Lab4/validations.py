@@ -3,6 +3,8 @@
 import re
 
 def validate_user(username, minlen):
+    print(ascii(username[0]))
+    print(ascii('.'))
     """Checks if the received username matches the required conditions."""
     if type(username) != str:
         raise TypeError("username must be a string")
@@ -19,6 +21,19 @@ def validate_user(username, minlen):
     if username[0].isnumeric():
         return False
     return True
-
+    # Usernames can't begin with a "."
+    if username.find('.') == 0:
+       print("I found  .") 
+       return False
+    return True
+    # Usernames can't begin with a "_"
+    if ascii(username[0]) == ascii('_'):
+        return False
+    return True
+	
+print(validate_user("blue.kale", 3)) # True
+print(validate_user(".blue.kale", 3)) # Currently True, should be False
+print(validate_user("red_quinoa", 4)) # True
+print(validate_user("_red_quinoa", 4)) # Currently True, should be False
 
 
